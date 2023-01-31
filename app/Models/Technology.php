@@ -9,7 +9,9 @@ class Technology extends Model
 {
     use HasFactory;
 
+    protected $guarded =['slug'];
+
     public function Project(){
-        return $this->belongsTo('App\Models\Project');
+        return $this->belongsTo(Project::class);
     }
 }

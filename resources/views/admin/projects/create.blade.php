@@ -25,6 +25,7 @@
                 <input type="file" class="form-control" id="cover_image" name="cover_image">
             </div>
 
+            {{-- Selects Types --}}
             <div class="mb-3">
                 <label for="type_id" class="form-label">Categoria progetto</label>
                 <select class="form-select" name="type_id" id="type_id">
@@ -33,6 +34,16 @@
                         <option value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
                 </select>
+            </div>
+
+            {{-- Checkbox Techonologies --}}
+            <div class="mb-3">
+                @foreach ($technologies as $technology)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="technologies[]" id="{{$technology->slug}}" value="{{$technology->id}}">
+                    <label class="form-check-label" for="{{$technology->slug}}">{{$technology->name}}</label>
+                </div>
+                @endforeach
             </div>
 
             <button type="submit" class="btn btn-primary">Crea</button>

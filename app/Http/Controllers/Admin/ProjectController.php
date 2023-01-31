@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -43,7 +45,8 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProjectRequest $request)
-    {
+    {   
+        
         $data = $request->validated();
 
         $new_project = new Project();
@@ -54,6 +57,10 @@ class ProjectController extends Controller
         }
         $new_project->save();
 
+        if(isset($data['technologies'])){
+            $new_project->technologies()->sync($data['technologies']);
+        }
+        
         return redirect()->route('admin.projects.index')->with('message', "Il Progetto $new_project->title è stato creato con successo!");
     }
 
@@ -65,8 +72,12 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {   
+        
         $types = Type::all();
-        return view('admin.projects.show', compact('project', 'types'));
+        $technologies = Technology::all();
+
+        return view('admin.projects.show', compact('project', 'types', 'technologies'));
+        
     }
 
     /**
@@ -79,6 +90,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         return view('admin.projects.edit', compact('project', 'types'));
+
+        // $technologies = isset($dat['technologies']) ? $data['technologies'] : [];
+        // $project->technologies()->sync($technologies);
     }
 
     /**

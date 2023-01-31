@@ -18,7 +18,13 @@
       @endif
     </div>
     <div class="mt-4">
-        {{$project->description}}
+        <h4>Descrizione: </h4>{{$project->description}}
+    </div>
+    <div class="mt-4">
+      <h5>Tecnologie: </h4>
+        @foreach($technologies as $technology)
+          <div>{{$technology->name}}</div>
+        @endforeach
     </div>
     <h2>Customer: {{$project->customer}}</h2>
   </div>
