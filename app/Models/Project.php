@@ -14,4 +14,8 @@ class Project extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public function Technology(){
+        return $this->belongsTo('App\Models\Technology');
+    }
 }
