@@ -27,3 +27,15 @@ class TypeSeeder extends Seeder
     }
 }
 }
+
+
+// {
+//     $technologies = ['Html', 'Css', 'Js', 'Php'];
+
+//     foreach( $technologies as $technology ) {
+//         $new_technology = new Technology();
+//         $new_technology->name = $technology;
+//         $new_technology->slug = Str::slug($new_technology->name);
+//         $new_technology->save();
+// }
+// }
