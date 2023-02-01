@@ -22,7 +22,7 @@
     </div>
     <div class="mt-4">
       <h5>Tecnologie: </h4>
-        @foreach($technologies as $technology)
+        @foreach($project->technologies as $technology)
           <div>{{$technology->name}}</div>
         @endforeach
     </div>

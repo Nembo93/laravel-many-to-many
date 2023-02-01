@@ -11,7 +11,7 @@ class Technology extends Model
 
     protected $guarded =['slug'];
 
-    public function Project(){
-        return $this->belongsTo(Project::class);
+    public function projects(){
+        return $this->belongsToMany(Project::class);
     }
 }
